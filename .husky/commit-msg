@@ -1,0 +1,7 @@
+#!/bin/sh
+# Verifica se a mensagem de commit começa com um dos tipos permitidos ou com "Merge branch" ou "Merge pull request"
+if ! head -1 "$1" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert|wip|release|hotfix|env|dep|sec|infra|Merge branch|Merge pull request): .{1,}$"; then
+    echo "Commit abortado: O prefixo da mensagem de commit está inválido ou não informado." >&2
+    echo "Por favor, utilize um dos seguintes prefixos válidos: feat, fix, chore, docs, test, style, refactor, perf, build, ci, revert, wip, release, hotfix, env, dep, sec, infra ou Merge branch/pull request." >&2
+    exit 1
+fi
